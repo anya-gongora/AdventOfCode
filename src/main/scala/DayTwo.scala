@@ -1,5 +1,7 @@
 import java.io.{FileNotFoundException, IOException}
 
+import Helpers.Utils
+
 import scala.io.Source
 
 object DayTwo {
@@ -24,21 +26,10 @@ object DayTwo {
     }.sum
   }
 
-  def getData(fileName: String): List[String] = {
-    try {
-      Source.fromFile(fileName, "UTF-8").getLines().toList
-    } catch {
-      case e: FileNotFoundException => throw new Throwable(s"Error: File $fileName not found")
-      case ioe: IOException => {
-        println(fileName)
-        throw new Throwable(ioe)
-      }
-    }
-  }
 
   def main(args: Array[String]): Unit = {
     val file = "src/day-two-input.txt"
-    val linesList = getData(file)
+    val linesList = Utils.getData(file)
     val checksum = getCheckSum(linesList)
     println(s"The checksum is $checksum")
 
